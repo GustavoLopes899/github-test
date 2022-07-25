@@ -88,6 +88,15 @@ namespace MouseMover.Resource {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Simulate Keyboard Press.
+        /// </summary>
+        public static string SimulateKeyPress {
+            get {
+                return ResourceManager.GetString("SimulateKeyPress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time between changes.
         /// </summary>
         public static string TimeBetweenChanges {
@@ -102,6 +111,15 @@ namespace MouseMover.Resource {
         public static string TimeBetweenChangesDefault {
             get {
                 return ResourceManager.GetString("TimeBetweenChangesDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timer.
+        /// </summary>
+        public static string Timer {
+            get {
+                return ResourceManager.GetString("Timer", resourceCulture);
             }
         }
     }

@@ -19,23 +19,33 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="AUTO"/>
             <RowDefinition Height="AUTO"/>
+            <RowDefinition Height="AUTO"/>
+            <RowDefinition Height="AUTO"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="AUTO"/>
         </Grid.RowDefinitions>
-        <CheckBox Grid.Row="1" Grid.Column="0" Margin="3" HorizontalContentAlignment="Center" Content="{x:Static resources:Resources.TimeBetweenChanges}"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Text="" Margin="3" Width="100"/>
+        <CheckBox Grid.Row="1" Grid.Column="0" Margin="3" HorizontalContentAlignment="Center" Content="{x:Static resources:Resources.TimeBetweenChanges}"
+                  IsChecked="{Binding Path=TimeBetweenChangesChecked, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=TimeBetweenChangesSeconds}" Margin="3" Width="100" PreviewTextInput="NumberValidationTextBox"
+                 IsEnabled="{Binding Path=TimeBetweenChangesChecked}"/>
         <TextBlock Grid.Row="1" Grid.Column="2" Margin="3" Text="{x:Static resources:Resources.TimeBetweenChangesDefault}"/>
-        <CheckBox Grid.Row="2" Grid.Column="0" Margin="3" HorizontalContentAlignment="Center" Content="{x:Static resources:Resources.ShutdownPCAfter}"/>
-        <TextBox Grid.Row="2" Grid.Column="1" Text="" Margin="3" Width="100"/>
+        <CheckBox Grid.Row="2" Grid.Column="0" Margin="3" HorizontalContentAlignment="Center" Content="{x:Static resources:Resources.ShutdownPCAfter}"
+            IsChecked="{Binding Path=ShutdownPCAfter, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Path=ShutdownPCAfterMinutes}" Margin="3" Width="100" PreviewTextInput="NumberValidationTextBox"
+                 IsEnabled="{Binding Path=ShutdownPCAfter}"/>
         <TextBlock Grid.Row="2" Grid.Column="2" Margin="3" Text="{x:Static resources:Resources.Minutes}"/>
-        <Grid Grid.Row="4" Grid.ColumnSpan="3">
+        <TextBlock Grid.Row="3" Grid.Column="0" Margin="3" TextAlignment="Right" Text="{x:Static resources:Resources.Timer}"/>
+        <TextBlock Grid.Row="3" Grid.Column="1" Margin="3" TextAlignment="Center" Text="{Binding Path=Timer, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBlock Grid.Row="3" Grid.Column="3" Margin="3" Text="{x:Static resources:Resources.Minutes}"/>
+        <CheckBox Grid.Row="4" Grid.Column="0" Margin="3" HorizontalContentAlignment="Center" Content="{x:Static resources:Resources.SimulateKeyPress}"
+            IsChecked="{Binding Path=SimulateKeyPress, UpdateSourceTrigger=PropertyChanged}"/>
+        <Grid Grid.Row="6" Grid.ColumnSpan="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="AUTO"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="AUTO"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Row="0" Grid.Column="0" Content="Options" Margin="3" Width="100" Height="30"/>
-            <Button Grid.Row="0" Grid.Column="2" Content="Enable" Margin="3" Width="100" Height="30"/>
+            <Button Grid.Row="0" Grid.Column="2" Content="Enable" Command="{Binding Path=Enable}" Margin="3" Width="100" Height="30"/>
         </Grid>
 
     </Grid>

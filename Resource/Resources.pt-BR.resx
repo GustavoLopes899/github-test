@@ -73,4 +73,10 @@
   <data name="Minutes" xml:space="preserve">
     <value>Minutos</value>
   </data>
+  <data name="Timer" xml:space="preserve">
+    <value>Timer</value>
+  </data>
+  <data name="SimulateKeyPress" xml:space="preserve">
+    <value>Simular Pressionamento de Teclas</value>
+  </data>
 </root>
