@@ -18,7 +18,9 @@ jobs:
         run: |
          $short = git rev-parse --short HEAD | Out-String
          cd ..
-         echo "FOLDER_NAME=D:\github-action\github-action-beta\"+$short | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+         echo "FOLDER_NAME=D:\github-action\github-action-beta\$short" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+         $folder=${{ env.FOLDER_NAME}}
+         echo $folder
          if (-Not (Test-Path ${{ env.FOLDER_NAME}})) { New-Item ${{ env.FOLDER_NAME}} -ItemType Directory; }
          cp .\insurance-pipeline-emissao-transmissao-hdi ${{ env.FOLDER_NAME}} -r
          cd "${{ env.FOLDER_NAME}}\insurance-pipeline-emissao-transmissao-hdi"
