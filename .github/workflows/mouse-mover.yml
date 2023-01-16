@@ -18,7 +18,7 @@ jobs:
         run: |
          $short = git rev-parse --short HEAD | Out-String
          cd ..
-         echo "FOLDER_NAME=D:\github-action\github-action-beta\$short" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+         echo "FOLDER_NAME=D:\github-action\github-action-beta\"+$short | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
          if (-Not (Test-Path ${{ env.FOLDER_NAME}})) { New-Item ${{ env.FOLDER_NAME}} -ItemType Directory; }
          cp .\insurance-pipeline-emissao-transmissao-hdi ${{ env.FOLDER_NAME}} -r
          cd "${{ env.FOLDER_NAME}}\insurance-pipeline-emissao-transmissao-hdi"
@@ -29,7 +29,7 @@ jobs:
           $short = git rev-parse --short HEAD | Out-String
           echo "RELEASE_NUMBER=1.0.0-$short" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
           $location = (Resolve-Path .\).Path
-          echo "BUILD_RELEASE_PATH=\\?\$location\release" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+          echo "BUILD_RELEASE_PATH=$location\release" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
 
       - name: Setup MSBuild 2
         uses: microsoft/setup-msbuild@v1
