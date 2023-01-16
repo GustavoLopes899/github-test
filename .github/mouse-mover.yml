@@ -7,7 +7,7 @@ name: Mouse Mover
 jobs:
   Build_Deploy:
     name: Run build to development
-    runs-on: [self-hosted]
+    runs-on: self-hosted
     env:
       PROJECT_PATH_FILE: MouseMover.csproj
 
