@@ -17,6 +17,7 @@ jobs:
       - name: Move files
         run: |
          $short = git rev-parse --short HEAD | Out-String
+         echo $short
          cd ..
          echo "FOLDER_NAME=D:\github-action\github-action-beta\$short" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
          $folder=${{ env.FOLDER_NAME}}
