@@ -12,12 +12,6 @@ jobs:
       PROJECT_PATH_FILE: MouseMover.csproj
 
     steps:
-      - name: Set Location
-        run: |
-          $FolderName="D:\github-action\github-action-beta\insurance-p-e-t-hdi"
-          if (-Not (Test-Path $FolderName)) { New-Item $FolderName -ItemType Directory; }
-          Set-Location $FolderName
-
       - uses: actions/checkout@v2
 
       - name: Create custom environment
