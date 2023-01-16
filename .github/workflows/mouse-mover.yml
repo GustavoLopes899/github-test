@@ -27,7 +27,7 @@ jobs:
       - name: Setup NuGet
         uses: nuget/setup-nuget@v1
 
-      - name: Restore Insurance Pipeline Emissao Transmissao
+      - name: Restore
         run: nuget restore
 
       - name: Build app for release
