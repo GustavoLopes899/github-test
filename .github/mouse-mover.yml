@@ -1,0 +1,40 @@
+on:
+  push:
+    branches-ignore:
+      - 'master'
+
+name: Mouse Mover
+jobs:
+  Build_Deploy:
+    name: Run build to development
+    runs-on: [self-hosted]
+    env:
+      PROJECT_PATH_FILE: MouseMover.csproj
+
+    steps:
+      - name: Set Location
+        run: |
+          $FolderName="D:\github-action\github-action-beta\insurance-p-e-t-hdi"
+          if (-Not (Test-Path $FolderName)) { New-Item $FolderName -ItemType Directory; }
+          Set-Location $FolderName
+
+      - uses: actions/checkout@v2
+
+      - name: Create custom environment
+        run: |
+          $short = git rev-parse --short HEAD | Out-String
+          echo "RELEASE_NUMBER=1.0.0-$short" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+          $location = (Resolve-Path .\).Path
+          echo "BUILD_RELEASE_PATH=$location\release" | Out-File -FilePath $Env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v1
+
+      - name: Restore Insurance Pipeline Emissao Transmissao
+        run: nuget restore
+
+      - name: Build app for release
+        run: msbuild ${{ env.PROJECT_PATH_FILE}} /t:rebuild /p:OutDir=${{ env.BUILD_RELEASE_PATH }},DeployOnBuild=true,Configuration=Release,RestorePackages=false,GenerateProjectSpecificOutputFolder=true
